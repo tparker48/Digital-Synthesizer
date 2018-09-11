@@ -1,4 +1,4 @@
-# Software-Synthesizer
+# Digital Synthesizer
 A C++ based, object-oriented synthesizer
 
 ## Goals
