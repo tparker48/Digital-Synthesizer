@@ -1,7 +1,7 @@
 # Software-Synthesizer
 A C++ based, object-oriented synthesizer
 
-![GitHub Logo](https://en.wikipedia.org/wiki/Waveform#/media/File:Waveforms.svg "Logo Title Text 1")
+!(https://en.wikipedia.org/wiki/Waveform#/media/File:Waveforms.svg "Logo Title Text 1")
 ![alt text](https://en.wikipedia.org/wiki/Waveform#/media/File:Waveforms.svg "Logo Title Text 1")
 
 ## Goals
