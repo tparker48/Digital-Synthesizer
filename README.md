@@ -1,5 +1,6 @@
 # Software-Synthesizer
 A C++ based, object-oriented synthesizer
+
 ## Goals
 * Object-oriented
 * Support for MIDI devices
