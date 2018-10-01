@@ -6,13 +6,13 @@
 #define SYNTH_ENGINE_H
 
 #include "Oscillator.h"
+#include "Lfo.h"
 #include "RtAudio.h"
 
 class SynthEngine {
 	public:
 		SynthEngine();
-		SynthEngine(Oscillator osc, int sampleRate);
-		~SynthEngine();
+		SynthEngine(Oscillator &osc, Lfo &lfo, int sampleRate);
 
 		int generateSamples(double *buffer, unsigned int bufferSize);
 		void toggleOutput();
@@ -21,6 +21,7 @@ class SynthEngine {
 		bool outputOn; // output sound if true, silence if false
 		int sampleRate;
 		Oscillator* osc;
+		Lfo* lfo;
 };
 
 #endif
