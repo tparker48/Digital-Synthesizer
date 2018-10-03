@@ -21,7 +21,7 @@ void Lfo::setAmplitude(double amplitude) {
 	this->amplitude = amplitude;
 }
 
-double* Lfo::getModulationTarget() {
+double* const Lfo::getModulationTarget() {
 	return target;
 }
 

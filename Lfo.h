@@ -2,12 +2,12 @@
 // Thomas Parker
 // 9/30/2018
 
-#ifndef LFO_H
-#define LFO_H
+// A low frequency oscillator (LFO) is used to continuously modulate a value chosen by the user
+
+#ifndef TPARKER_LFO_H
+#define TPARKER_LFO_H
 
 #include "Oscillator.h"
-
-// A low frequency oscillator (LFO) is used to modulate some paramter of the synth chosen by the user
 
 class Lfo: public Oscillator {
 	public:
@@ -16,7 +16,8 @@ class Lfo: public Oscillator {
 
 		void setModulationTarget(double* target);
 		void setAmplitude(double amplitude);
-		double* getModulationTarget();
+
+		double* const getModulationTarget();
 		void updateTarget(int bufferSize, double samplingFrequency);
 
 	private:

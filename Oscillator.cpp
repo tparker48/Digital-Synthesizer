@@ -39,23 +39,23 @@ void Oscillator::setAmplitude(double amplitude) {
 }
 
 
-int Oscillator::getWaveType() {
+int const Oscillator::getWaveType() {
 	return waveType;
 }
 
-double Oscillator::getFrequency() {
+double const Oscillator::getFrequency() {
 	return frequency;
 }
 
-double* Oscillator::getFrequencyPointer() {
+double* const Oscillator::getFrequencyPointer() {
 	return &freqMod;
 }
 
-double Oscillator::getAmplitude() {
+double const Oscillator::getAmplitude() {
 	return amplitude;
 }
 
-double* Oscillator::getAmplitudePointer() {
+double* const Oscillator::getAmplitudePointer() {
 	return &ampMod;
 }
 
@@ -80,17 +80,19 @@ void Oscillator::fillSampleBuffer(double *buffer, int bufferSize, double samplin
 	ampMod = 1;
 }
 
-double Oscillator::generateSample(double phase) {
+double const Oscillator::generateSample(double phase) {
+	double ampUsed = amplitude * ampMod;
+
 	switch (Oscillator::waveType) {
 		case 1:	// sine wave
-			return ((amplitude * ampMod) * sin(phase));
+			return (ampUsed * sin(phase));
 			break;
 		case 2:	// square wave
 			if(sin(phase) <= 0){
-				return -(amplitude * ampMod);
+				return -(ampUsed * abs(ampMod));
 			}
 			else {
-				return (amplitude * ampMod);
+				return (ampUsed * abs(ampMod));
 			}
 			break;
 		case 3:	// triangle wave
