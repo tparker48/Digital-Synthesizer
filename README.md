@@ -1,7 +1,7 @@
 # Digital Synthesizer
 A C++ based, object-oriented synthesizer
 
-## Goals
+## Project Goals
 * Compatible on Windows, OSX, and Linux
 * GUI
 * Sin, Square, Saw, Triangle, and Noise waves
