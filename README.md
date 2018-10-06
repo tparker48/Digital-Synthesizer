@@ -5,7 +5,7 @@ A C++ based, object-oriented synthesizer
 * Compatible on Windows, OSX, and Linux
 * GUI
 * Sin, Square, Saw, Triangle, and Noise waves
-* LFOs, Filter, Envelope
+* LFOs, Filters, Envelopes
 * Real-time sound output
 * Support for MIDI devices
 
