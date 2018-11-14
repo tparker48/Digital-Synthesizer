@@ -1,6 +1,5 @@
 // Oscillator.cpp
-// Thomas Parker
-// 9/25/2018
+// Thomas Parkers
 
 #include <cmath>
 #include "Oscillator.h"

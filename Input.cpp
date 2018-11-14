@@ -1,27 +1,40 @@
 // Input.cpp
 // Thomas Parker
-// 10/2/2018
 
 #include "Input.h"
-#include <unordered_map>
+#include <map>
+#include <cmath>
+#include <string>
+#include <iostream>
 
 Input::Input() {
-	keyMap = (std::unordered_map<char, double>){
-					{'a', 261.6256}, {'w', 277.1826},
-					{'s', 293.6648}, {'e', 311.1270},
-					{'d', 329.6276},
-					{'f', 349.2282}, {'t', 369.9944},
-					{'g', 391.9954}, {'y', 415.3047},
-					{'h', 440.0000}, {'u', 466.1638},
-					{'j', 493.8833},
-					{'k', 523.2512}, {'o', 554.3652},
-					{'l', 587.2296}, {'p', 622.254},
-					{'0', 0.0000}
+	// starts with the notes and # of halfsteps from A
+	noteMap = (std::map<std::string, double>){
+					{"c", -9}, {"c#", -8},
+					{"d", -7}, {"d#", -6},
+					{"e", -5},
+					{"f", -4}, {"f#", -3},
+					{"g", -2}, {"g#", -1},
+					{"a", 0}, {"a#", 1},
+					{"b", 2},
+					{"c1",3}, {"c#1",4},
+					{"d1",5}, {"d#1",6},
+					{"0", -999}
 				};
-	// Lower-case letters denote sharp notes: 'c' = C#
-	// Other octaves are acheived via operations on these base frequencies.
+	// convert each halfstep value into a frequency
+	for(auto x: noteMap){
+		noteMap.at(x.first) = hzCalculator(x.second);
+	}
 }
 
-double const Input::keyToHz(char key) {
-	return keyMap[key];
+double const Input::noteToHz(std::string note) {
+	return noteMap[note];
+}
+
+// this formula and an explanation for it can be found here: https://pages.mtu.edu/~suits/NoteFreqCalcs.html
+double Input::hzCalculator(double halfSteps){
+	double a = 1.05946309435;
+	double hz;
+	hz = pow(a, halfSteps);
+	return (440.0 * hz);
 }

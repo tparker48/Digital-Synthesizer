@@ -1,6 +1,5 @@
 // Oscillator.h
 // Thomas Parker
-// 9/25/2018
 
 // This class models an oscillator, the component in every synth that is responsible for producing a signal
 

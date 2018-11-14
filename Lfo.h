@@ -1,6 +1,5 @@
 // Lfo.h
 // Thomas Parker
-// 9/30/2018
 
 // A low frequency oscillator (LFO) is used to continuously modulate a value chosen by the user
 

@@ -18,3 +18,6 @@ https://issuu.com/petergoldsborough/docs/thesis
 
 BasicSynth by Daniel R Mitchel
 http://basicsynth.com/
+
+Physics of Music - Notes : Equations for the Frequency Table by B. H. Suits, Physics Department, Michigan Technological University
+https://pages.mtu.edu/~suits/NoteFreqCalcs.html

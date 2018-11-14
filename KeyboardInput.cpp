@@ -1,52 +1,46 @@
 // KeyboardInput.cpp
 // Thomas Parker
-// 10/6/2018
 
 #include "KeyboardInput.h"
 #include <SDL2/SDL.h>
 
 const Uint8* KeyboardInput::keyboardState = SDL_GetKeyboardState(NULL);
-const std::string KeyboardInput::keys = "qawsedrftgyhujikolp";
-const SDL_Scancode KeyboardInput::codes[]  = {	
-								SDL_SCANCODE_Q,
-								SDL_SCANCODE_A,
-								SDL_SCANCODE_W,
-								SDL_SCANCODE_S,
-								SDL_SCANCODE_E,
-								SDL_SCANCODE_D,
-								SDL_SCANCODE_R,
-								SDL_SCANCODE_F,
-								SDL_SCANCODE_T,
-								SDL_SCANCODE_G,
-								SDL_SCANCODE_Y,
-								SDL_SCANCODE_H,
-								SDL_SCANCODE_U,
-								SDL_SCANCODE_J,
-								SDL_SCANCODE_I,
-								SDL_SCANCODE_K,
-								SDL_SCANCODE_O,
-								SDL_SCANCODE_L,
-								SDL_SCANCODE_P,
+const std::map<SDL_Scancode, std::string> KeyboardInput::keysToNotes = {	
+								{SDL_SCANCODE_A, "c"},
+								{SDL_SCANCODE_W, "c#"},
+								{SDL_SCANCODE_S, "d"},
+								{SDL_SCANCODE_E, "d#"},
+								{SDL_SCANCODE_D, "e"},
+								{SDL_SCANCODE_F, "f"},
+								{SDL_SCANCODE_T, "f#"},
+								{SDL_SCANCODE_G, "g"},
+								{SDL_SCANCODE_Y, "g#"},
+								{SDL_SCANCODE_H, "a"},
+								{SDL_SCANCODE_U, "a#"},
+								{SDL_SCANCODE_J, "b"},
+								{SDL_SCANCODE_K, "c1"},
+								{SDL_SCANCODE_O, "c1#"},
+								{SDL_SCANCODE_L, "d1"},
+								{SDL_SCANCODE_P, "d1#"}
 								};
 
 KeyboardInput::KeyboardInput(): Input() {
 }
 
-double const KeyboardInput::getNote() {
+double const KeyboardInput::getHz() {
 	double hz;
-	char key = getKeyPressed();
-	hz = keyToHz(key);
+	std::string key = getNotePressed();
+	hz = noteToHz(key);
 	return hz;
 }
 
-char const KeyboardInput::getKeyPressed() {
+std::string const KeyboardInput::getNotePressed() {
 	SDL_PumpEvents();
 	SDL_Scancode scanCode;
-	char output = '0';
-	for(int i = 0; i < 19; i++){	//Right-most keys are dominant
-		scanCode = codes[i];
-		if(keyboardState[scanCode]){
-			output = keys[i];
+	std::string output = "0";
+	for(auto x: keysToNotes){	//Right-most keys are dominant
+		if(keyboardState[x.first]){
+			output = x.second;
 		}
 	}
 

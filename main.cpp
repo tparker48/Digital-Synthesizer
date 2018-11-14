@@ -1,6 +1,5 @@
 // main.cpp for Digital Synthesizer
 // Thomas Parker
-// 10/6/2018
 
 #include <string>
 #include <cstdlib>
@@ -41,9 +40,10 @@ int main() {
 
 	// Initialize all the components of our synth
 	KeyboardInput input;
-	Oscillator osc(2);
-	Lfo lfo(osc.frequencyModifier(), 1, 5, 5);
-	SynthEngine* engine = new SynthEngine(osc,lfo,sampleRate);
+	Oscillator osc(1);
+	Lfo lfo1(osc.frequencyModifier(), 1, 0, 100);
+	SynthEngine* engine = new SynthEngine(osc, lfo1, sampleRate);
+
 
 	SDL_Window* window = SDL_CreateWindow("",20,20,500,500,0);
 
@@ -65,7 +65,9 @@ int main() {
 
 	while(true) {
 		// Update current note
-		osc.setFrequency(input.getNote());
+		osc.setFrequency(input.getHz());
+		//lfo1.setFrequency(input.getHz()*2);
+		//cout << lfo1.getFrequency() << " " << osc.getFrequency() <<  endl;
 	}
 
 

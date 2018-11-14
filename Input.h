@@ -1,25 +1,25 @@
 // Input.h
 // Thomas Parker
-// 10/2/2018
 
 // Input monitors the user's actions and converts them into notes
 
 #ifndef TPARKER_INPUT_H
 #define TPARKER_INPUT_H
 
-#include <unordered_map>
+#include <map>
 
 class Input {
 	public:
 		Input();
-		virtual double const getNote() = 0;
+		virtual double const getHz() = 0;
 
 	protected:
-		virtual char const getKeyPressed() = 0;	// returns '0' for no key pressed
-		double const keyToHz(char key);
+		virtual std::string const getNotePressed() = 0;
+		double const noteToHz(std::string note);
+		double hzCalculator(double halfSteps); // used to calculate Hz values for map
 
 		// This map links notes to their respective frequencies (Hz).
-		std::unordered_map<char, double> keyMap;
+		std::map<std::string, double> noteMap;
 };
 
 #endif
