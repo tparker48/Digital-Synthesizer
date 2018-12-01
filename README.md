@@ -2,7 +2,6 @@
 A C++ based, object-oriented synthesizer
 
 ## Project Goals
-* Compatible on Windows, OSX, and Linux
 * GUI
 * Sin, Square, Saw, Triangle, and Noise wave oscillators
 * LFOs, Filters, Envelopes
@@ -10,10 +9,10 @@ A C++ based, object-oriented synthesizer
 * Support for MIDI devices
 
 ## Current Features
-* Compatible on Windows, OSX, and Linux (not tested yet)
 * Sin and Square wave oscillators
 * LFOs
 * Real-time sound output
+* Supports input from keyboard
 
 ## Helpful References
 RtAudio Documentation 
