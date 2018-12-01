@@ -4,14 +4,17 @@ CXXFLAGS=-std=c++11 -I include
 LINKERFLAGS=-lrtAudio -lSDL2
 SRC=$(wildcard src/*)
 EXEC=build/exec
-
+BUILD=build/
 all: synth
 
-synth: $(SRC)
+synth: $(BUILD) $(SRC)
 	$(CXX) $(CXXFLAGS) $(LINKERFLAGS) $(SRC) -o $(EXEC)
 
-run: $(EXEC)
+run: $(BUILD) $(EXEC)
 	./$(EXEC)
 
-clean:
-	$(RM) exec
+clean: $(BUILD)
+	$(RM) $(EXEC)
+
+$(BUILD):
+	mkdir build
