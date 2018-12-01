@@ -1,27 +1,17 @@
 CXX=g++
 RM=rm -f
-CXXFLAGS=-std=c++11
+CXXFLAGS=-std=c++11 -I include
 LINKERFLAGS=-lrtAudio -lSDL2
-OBJS=Oscillator.o SynthEngine.o Lfo.o Input.o KeyboardInput.o main.o
+SRC=$(wildcard src/*)
+EXEC=build/exec
 
-all: test
+all: synth
 
-test: $(OBJS)
-	$(CXX) $(CXXFLAGS) $(LINKERFLAGS) $(OBJS) -o test
+synth: $(SRC)
+	$(CXX) $(CXXFLAGS) $(LINKERFLAGS) $(SRC) -o $(EXEC)
+
+run: $(EXEC)
+	./$(EXEC)
 
 clean:
-	$(RM) $(OBJS) test
-
-
-SynthEngine.o: SynthEngine.cpp
-	$(CXX) $(CXXFLAGS) -c -o SynthEngine.o SynthEngine.cpp
-Oscillator.o: Oscillator.cpp
-	$(CXX) $(CXXFLAGS) -c -o Oscillator.o Oscillator.cpp
-Lfo.o: Lfo.cpp
-	$(CXX) $(CXXFLAGS) -c -o Lfo.o Lfo.cpp
-Input.o: Input.cpp
-	$(CXX) $(CXXFLAGS) -c -o Input.o Input.cpp
-KeyboardInput.o: KeyboardInput.cpp
-	$(CXX) $(CXXFLAGS) -c -o KeyboardInput.o KeyboardInput.cpp
-main.o: main.cpp
-	$(CXX) $(CXXFLAGS) -c -o main.o main.cpp
+	$(RM) exec
