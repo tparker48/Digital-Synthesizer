@@ -15,7 +15,7 @@ using namespace std;
 // This function is repeatedly called by the RtAudio stream to output audio
 
 int callback(void *outputStreamBuffer, void *inputBuffer, unsigned int bufferSize, 
-                double streamTime, RtAudioStreamStatus status, void *userData ) {
+            	double streamTime, RtAudioStreamStatus status, void *userData ) {
 
 	double *buffer = (double *) outputStreamBuffer;
 	SynthEngine *engine = (SynthEngine *) userData;
@@ -41,11 +41,12 @@ int main() {
 	// Initialize all the components of our synth
 	KeyboardInput input;
 	Oscillator osc(1);
-	Lfo lfo1(osc.frequencyModifier(), 1, 0, 100);
+	Lfo lfo1(osc.frequencyModifier(), 1, 10, 100);
 	SynthEngine* engine = new SynthEngine(osc, lfo1, sampleRate);
 
 
 	SDL_Window* window = SDL_CreateWindow("",20,20,500,500,0);
+	SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 	SDL_Event e;
 
 	// Find audio devices, open and start audio stream
@@ -62,18 +63,15 @@ int main() {
 		exit( 0 );
 	}
 
-
+	int x = 500;
+	int y = 500;
 
 	while(e.type != SDL_QUIT) {
 		SDL_PollEvent(&e);
-
-		// Update current note
-		osc.setFrequency(input.getHz());
-		//lfo1.setFrequency(input.getHz()*2);
-		//cout << lfo1.getFrequency() << " " << osc.getFrequency() <<  endl;
+		SDL_GetMouseState(&x, &y);
+		osc.setFrequency(500-y);
+		lfo1.setAmplitude(x/10);
 	}
-
-
 
 	try{
 		outputStream.closeStream();

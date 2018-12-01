@@ -42,7 +42,6 @@ std::string const KeyboardInput::getNotePressed() {
 	SDL_Scancode scanCode;
 	std::string output = "0";
 	for(auto x: keysToNotes){	//Right-most keys are dominant
-		std::cout<<x.second<<std::endl;
 		if(keyboardState[x.first]){
 			output = x.second;
 		}
