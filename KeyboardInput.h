@@ -15,11 +15,12 @@ class KeyboardInput : public Input {
 	public:
 		KeyboardInput();
 		virtual double const getHz();
+		void shiftOctaveUp();
+		void shiftOctaveDown();
 
 	private:
 		// Points to a value holding key on/off status for every key
 		static const Uint8* keyboardState;
-
 		virtual std::string const getNotePressed();
 
 		// These two map keys on the keyboard to their respective chars

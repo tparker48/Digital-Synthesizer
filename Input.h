@@ -17,6 +17,7 @@ class Input {
 		virtual std::string const getNotePressed() = 0;
 		double const noteToHz(std::string note);
 		double hzCalculator(double halfSteps); // used to calculate Hz values for map
+		double octaveShift;
 
 		// This map links notes to their respective frequencies (Hz).
 		std::map<std::string, double> noteMap;

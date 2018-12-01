@@ -8,6 +8,7 @@
 #include <iostream>
 
 Input::Input() {
+	octaveShift = 1;
 	// starts with the notes and # of halfsteps from A
 	noteMap = (std::map<std::string, double>){
 					{"c", -9}, {"c#", -8},
@@ -19,7 +20,6 @@ Input::Input() {
 					{"b", 2},
 					{"c1",3}, {"c#1",4},
 					{"d1",5}, {"d#1",6},
-					{"0", -999}
 				};
 	// convert each halfstep value into a frequency
 	for(auto x: noteMap){
@@ -28,7 +28,8 @@ Input::Input() {
 }
 
 double const Input::noteToHz(std::string note) {
-	return noteMap[note];
+	if(note == "0") return 0;
+	else return noteMap[note];
 }
 
 // this formula and an explanation for it can be found here: https://pages.mtu.edu/~suits/NoteFreqCalcs.html

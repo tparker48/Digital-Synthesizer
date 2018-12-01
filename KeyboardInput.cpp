@@ -28,18 +28,28 @@ const std::vector<std::pair<SDL_Scancode,std::string>> KeyboardInput::keysToNote
 								};
 
 KeyboardInput::KeyboardInput(): Input() {
+	octaveShift = 1;
 }
 
 double const KeyboardInput::getHz() {
 	double hz;
 	std::string key = getNotePressed();
 	hz = noteToHz(key);
-	return hz;
+	return hz * octaveShift;
 }
 
-std::string const KeyboardInput::getNotePressed() {
+void KeyboardInput::shiftOctaveUp(){
+	octaveShift*=2;
+}
+
+void KeyboardInput::shiftOctaveDown(){
+	octaveShift/=2;
+}
+
+
+std::string const KeyboardInput::getNotePressed(){
 	SDL_PumpEvents();
-	SDL_Scancode scanCode;
+
 	std::string output = "0";
 	for(auto x: keysToNotes){	//Right-most keys are dominant
 		if(keyboardState[x.first]){
