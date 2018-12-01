@@ -3,9 +3,12 @@
 
 #include "KeyboardInput.h"
 #include <SDL2/SDL.h>
+#include <iostream>
+#include <vector>
+#include <utility>
 
 const Uint8* KeyboardInput::keyboardState = SDL_GetKeyboardState(NULL);
-const std::map<SDL_Scancode, std::string> KeyboardInput::keysToNotes = {	
+const std::vector<std::pair<SDL_Scancode,std::string>> KeyboardInput::keysToNotes = {	
 								{SDL_SCANCODE_A, "c"},
 								{SDL_SCANCODE_W, "c#"},
 								{SDL_SCANCODE_S, "d"},
@@ -39,6 +42,7 @@ std::string const KeyboardInput::getNotePressed() {
 	SDL_Scancode scanCode;
 	std::string output = "0";
 	for(auto x: keysToNotes){	//Right-most keys are dominant
+		std::cout<<x.second<<std::endl;
 		if(keyboardState[x.first]){
 			output = x.second;
 		}

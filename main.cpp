@@ -46,6 +46,7 @@ int main() {
 
 
 	SDL_Window* window = SDL_CreateWindow("",20,20,500,500,0);
+	SDL_Event e;
 
 	// Find audio devices, open and start audio stream
 	if ( outputStream.getDeviceCount() < 1 ) {
@@ -63,7 +64,9 @@ int main() {
 
 
 
-	while(true) {
+	while(e.type != SDL_QUIT) {
+		SDL_PollEvent(&e);
+
 		// Update current note
 		osc.setFrequency(input.getHz());
 		//lfo1.setFrequency(input.getHz()*2);
@@ -78,7 +81,8 @@ int main() {
 	catch (RtAudioError& e ) { 
 		e.printMessage();
 	}
-
+	
+	SDL_DestroyWindow(window);
 	delete engine;
 	return 0;
 }

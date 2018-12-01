@@ -24,7 +24,7 @@ class KeyboardInput : public Input {
 
 		// These two map keys on the keyboard to their respective chars
 		// TODO: Replace this representation with single data structure.
-		static const std::map<SDL_Scancode, std::string> keysToNotes;
+		static const std::vector<std::pair<SDL_Scancode, std::string>> keysToNotes;
 		static const SDL_Scancode codes[];
 };
 
